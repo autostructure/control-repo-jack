@@ -27,3 +27,7 @@ mod 'puppet-archive', '1.3.0'
 mod 'puppetlabs-tomcat', '1.7.0'
 mod 'puppetlabs-concat', '4.0.1'
 mod 'puppet-staging', '2.2.0'
+
+#nginx and dependencies
+mod 'puppet-nginx', '0.6.0'
+mod 'puppetlabs-apt', '4.1.0'
