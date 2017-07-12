@@ -31,3 +31,8 @@ mod 'puppet-staging', '2.2.0'
 #nginx and dependencies
 mod 'puppet-nginx', '0.6.0'
 mod 'puppetlabs-apt', '4.1.0'
+
+#harden-macos
+mod 'mac_csi_secure',
+:git => 'https://github.com/autostructure/hardened_macos',
+:branch => 'jackdev'
