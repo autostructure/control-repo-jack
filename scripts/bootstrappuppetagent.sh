@@ -19,26 +19,23 @@ if [ $# -eq 0 ]; then
   exit 1
 fi
 
-echo "TESTTESTTEST"
-echo "$(whoami)"
-echo "TESTTESTTEST"
+# Create /etc/puppetlabs/puppet/csr_attributes.yaml
+echo "Creating /etc/puppetlabs/puppet/csr_attributes.yaml"
+mkdir -p /etc/puppetlabs/puppet
+echo "Adding trusted fact pp_role = $1"
+touch /etc/puppetlabs/puppet/csr_attributes.yaml
+echo "extension_requests:
+  pp_role: $1" > /etc/puppetlabs/puppet/csr_attributes.yaml
 
-# # Create /etc/puppetlabs/puppet/csr_attributes.yaml
-# echo "Creating /etc/puppetlabs/puppet/csr_attributes.yaml"
-# echo "Adding trusted fact pp_role = $1"
-# sudo mkdir -p /etc/puppetlabs/puppet
-# sudo echo "extension_requests:
-#   pp_role: $1" > /etc/puppetlabs/puppet/csr_attributes.yaml
-#
-# # Connect to Puppet master
-# echo "Connecting to Puppet Master and installing Puppet Agent"
-# sudo curl -k https://puppetmaster.tqhqlio544vudmnft5liynzthc.ax.internal.usgovcloudapp.net:8140/packages/current/install.bash | sudo bash
-#
-# # Add Puppet commands to $PATH
-# echo "Adding /opt/puppetlabs/bin to \$PATH"
-# PATH=$PATH:/opt/puppetlabs/bin/
-#
-# # First Puppet Run
-# echo "Executing first Puppet run"
-# sudo puppet agent -t
+# Connect to Puppet master
+echo "Connecting to Puppet Master and installing Puppet Agent"
+curl -k https://puppetmaster.tqhqlio544vudmnft5liynzthc.ax.internal.usgovcloudapp.net:8140/packages/current/install.bash | sudo bash
+
+# Add Puppet commands to $PATH
+echo "Adding /opt/puppetlabs/bin to \$PATH"
+PATH=$PATH:/opt/puppetlabs/bin/
+
+# First Puppet Run
+echo "Executing first Puppet run"
+puppet agent -t
 
